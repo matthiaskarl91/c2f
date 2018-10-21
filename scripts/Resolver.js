@@ -9,10 +9,22 @@ class Resolver {
     }
 
     getDetails(id) {
-        const detail = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.find(detail => detail.id === id);
-        document.querySelector('#image').src = detail.picture;
-        document.querySelector('.description').innerHTML = detail.description;
-        document.querySelector('#title').innerHTML = `${id}.  ${detail.name}`;
+        if (!sessionStorage.getItem('pointdata')) {
+            fetch('story.json')
+                .then((response) => response.json())
+                .then((data) => {
+                    sessionStorage.setItem('pointdata', JSON.stringify(data));
+                    const detail = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.find(detail => detail.id === id);
+                    document.querySelector('#image').src = detail.picture;
+                    document.querySelector('.description').innerHTML = detail.description;
+                    document.querySelector('#title').innerHTML = `${id}.  ${detail.name}`;
+                });
+        } else {
+            const detail = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.find(detail => detail.id === id);
+            document.querySelector('#image').src = detail.picture;
+            document.querySelector('.description').innerHTML = detail.description;
+            document.querySelector('#title').innerHTML = `${id}.  ${detail.name}`;
+        }
     }
 }
 
