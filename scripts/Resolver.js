@@ -1,14 +1,15 @@
 class Resolver {
     resolve(id) {
-        const data = JSON.parse(sessionStorage.getItem('waypoints'));
+        const story = JSON.parse(sessionStorage.getItem('pointdata'));
+        const data = story[0].points;
         const index = data.findIndex((waypoint) => waypoint.id === id);
-        data[index].resolved = true;
-
-        sessionStorage.setItem('waypoints', JSON.stringify(data));
+        data[index].resolved = 1;
+        story.points = data;
+        sessionStorage.setItem('pointdata', JSON.stringify(story));
     }
 
     getDetails(id) {
-        const detail = JSON.parse(sessionStorage.getItem('pointdata')).find(detail => detail.id === id);
+        const detail = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.find(detail => detail.id === id);
         document.querySelector('#image').src = detail.picture;
         document.querySelector('.description').innerHTML = detail.description;
         document.querySelector('#title').innerHTML = `${id}.  ${detail.name}`;

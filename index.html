@@ -22,34 +22,49 @@
 </head>
 <body>
 
-  <header class="header">
-    <h1 class="header__title">TapTag</h1>
-  </header>
+<header class="header">
+  <h1 class="header__title" id="title"></h1>
+</header>
 
-  <main class="main">
-    <div id="map" style="height: 100%; width: 100%;"></div>
-  </main>
-<script>
-    if(!sessionStorage.getItem('waypoints')){
-        fetch('data.json').then((response) => response.json()).then((data) => sessionStorage.setItem('waypoints', JSON.stringify(data)));
-    }
+<main class="main">
+  <div class="image">
+    <img id="image" src="images/image.png" alt="Frauenkirche">
+  </div>
+  <div class="description"></div>
+  <div id="start" style="width: 100%;
+    height: 50px;
+    background: #45a29e;
+    color: #000;
+    position:fixed;
+    bottom: 0;
+">
+    <a href="/map.html" style="    text-decoration: none;
+    color: #000;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+      font-size: 25px;      text-transform: uppercase;">Start</a>
+  </div>
+</main>
+      <script>
 
-    if (!sessionStorage.getItem('pointdata')) {
-        const headers = new Headers({
-            'Content-Type': 'application/json'
+      if (!sessionStorage.getItem('pointdata')) {
+        fetch('story.json').then((response) => response.json()).then((data) => {
+          sessionStorage.setItem('pointdata', JSON.stringify(data));
         });
-        fetch('story.json').then((response) => response.json()).then((data) => sessionStorage.setItem('pointdata', JSON.stringify(data)));
-    }
-    // TODO add service worker code here
-    /*if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-            .register('./service-worker.js')
-            .then(function() { console.log('Service Worker Registered'); });
+      }
+      // TODO add service worker code here
+      /*if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+    .register('./service-worker.js')
+    .then(function() { console.log('Service Worker Registered'); });
     }*/
-</script>
-  <!-- Uncomment the line below when ready to test with fake data -->
 
-  <script src="./scripts/vendor/leaflet.js" async></script>
-  <script type="module" src="./scripts/main.js" async></script>
+</script>
+<script type="module" src="./scripts/story.js" async></script>
+
+<!-- Uncomment the line below when ready to test with fake data -->
+
 </body>
 </html>

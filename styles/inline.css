@@ -16,7 +16,7 @@ html, body {
   width: 100%;
   height: 56px;
   color: #FFF;
-  background: #3F51B5;
+  background: #1f2833;
   position: fixed;
   font-size: 20px;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
@@ -49,6 +49,7 @@ html, body {
 
 .description{
   padding: 15px;
+  margin-bottom: 50px;
 }
 
 #map{
@@ -58,12 +59,12 @@ html, body {
 
 .waypoint{
   border-radius: 50%;
-  background: red;
+  background: #66fcf1;
   width: 25px !important;
   height: 25px !important;
 }
 .active-wp{
-  background: blue !important;
+  background: #45a29e !important;
 }
 
 .leaflet-control-container{

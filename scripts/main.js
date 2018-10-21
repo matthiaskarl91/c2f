@@ -3,12 +3,13 @@ import Waypoint from './Waypoint.js';
 class MapView {
     constructor() {
         this.token = 'pk.eyJ1Ijoic2NoYWZmaSIsImEiOiJjam5odngwOXUwZ3RtM3FrZm9yemN2eHhlIn0.PxTklDfVE6zxZIkiHJwTdg';
-        this.waypoints = JSON.parse(sessionStorage.getItem('waypoints')).map(waypoint => new Waypoint(waypoint.lat, waypoint.long, waypoint.id, waypoint.resolved));
+        this.waypoints = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.map(waypoint => new Waypoint(waypoint.lat, waypoint.lng, waypoint.id, waypoint.resolved, waypoint.picture));
         this.init();
     }
 
     init() {
-        this.map = L.map('map').setView([48.1917381, 11.648420699999999], 11);
+        const startpoint = this.waypoints[0];
+        this.map = L.map('map').setView(startpoint.getCoordinates(), 16);
         L.tileLayer(`https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=${this.token}`, {
             maxZoom: 18,
             id: 'mapbox.streets',
