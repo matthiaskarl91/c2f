@@ -3,16 +3,16 @@ import Waypoint from './Waypoint.js';
 class MapView {
     constructor() {
         this.token = 'pk.eyJ1Ijoic2NoYWZmaSIsImEiOiJjam5odngwOXUwZ3RtM3FrZm9yemN2eHhlIn0.PxTklDfVE6zxZIkiHJwTdg';
-        if (!sessionStorage.getItem('pointdata')) {
+        if (!localStorage.getItem('pointdata')) {
             fetch('story.json')
                 .then((response) => response.json())
                 .then((data) => {
-                    sessionStorage.setItem('pointdata', JSON.stringify(data))
+                    localStorage.setItem('pointdata', JSON.stringify(data))
                 });
-            this.waypoints = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.map(waypoint => new Waypoint(waypoint.lat, waypoint.lng, waypoint.id, waypoint.resolved, waypoint.picture));
+            this.waypoints = JSON.parse(localStorage.getItem('pointdata')).pop().points.map(waypoint => new Waypoint(waypoint.lat, waypoint.lng, waypoint.id, waypoint.resolved, waypoint.picture));
             this.init();
         } else {
-            this.waypoints = JSON.parse(sessionStorage.getItem('pointdata')).pop().points.map(waypoint => new Waypoint(waypoint.lat, waypoint.lng, waypoint.id, waypoint.resolved, waypoint.picture));
+            this.waypoints = JSON.parse(localStorage.getItem('pointdata')).pop().points.map(waypoint => new Waypoint(waypoint.lat, waypoint.lng, waypoint.id, waypoint.resolved, waypoint.picture));
             this.init();
         }
     }

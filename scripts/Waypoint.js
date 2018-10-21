@@ -5,7 +5,7 @@ export default class Waypoint {
         this.id = id;
         this.resolved = resolved;
         this.picture = picture;
-        this.url = `details.html?id=${this.id + 1 }`;
+        this.url = `details.html?id=${this.id}`;
     }
 
     getCoordinates() {
@@ -13,12 +13,21 @@ export default class Waypoint {
     }
 
     getOverlayMarkup() {
-        return `
+        if (this.resolved) {
+            return `
         <div>
             <a href="${this.url}">
                 <img src="${this.picture}" alt="Frauenkirche" style="height: 120px; width: 120px;" />
             </a>
         </div>
         `;
+        }
+
+        return `
+        <div>
+                <img src="${this.picture}" alt="Frauenkirche" style="height: 120px; width: 120px;" />
+        </div>
+        `;
+
     }
 }
