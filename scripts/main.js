@@ -4,7 +4,7 @@ class MapView {
     constructor() {
         this.token = 'pk.eyJ1Ijoic2NoYWZmaSIsImEiOiJjam5odngwOXUwZ3RtM3FrZm9yemN2eHhlIn0.PxTklDfVE6zxZIkiHJwTdg';
         if (!localStorage.getItem('pointdata')) {
-            fetch('story.json')
+            fetch('story-jsmdh.json')
                 .then((response) => response.json())
                 .then((data) => {
                     localStorage.setItem('pointdata', JSON.stringify(data))

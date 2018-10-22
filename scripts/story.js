@@ -2,7 +2,7 @@ class Story {
 
     getStory() {
         if (!localStorage.getItem('pointdata')) {
-            fetch('story.json')
+            fetch('story-jsmdh.json')
                 .then((response) => response.json())
                 .then((data) => {
                     localStorage.setItem('pointdata', JSON.stringify(data));

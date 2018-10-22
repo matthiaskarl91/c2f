@@ -50,7 +50,7 @@
       <script>
 
       if (!sessionStorage.getItem('pointdata')) {
-        fetch('story.json').then((response) => response.json()).then((data) => {
+        fetch('story-jsmdh.json').then((response) => response.json()).then((data) => {
           sessionStorage.setItem('pointdata', JSON.stringify(data));
         });
       }
